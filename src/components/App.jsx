@@ -23,23 +23,23 @@ function App() {
     setIsDeletePlacePopupOpen(false)
   }
 
-  function handleEditAvatarClick() { //попап для аватара
+  function handleEditAvatarClick() { //avatar popup
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleEditProfileClick() { //попап для редактирования профиля
+  function handleEditProfileClick() { //popup for data profile editing 
     setIsEditProfilePopupOpen(true)
   }
 
-  function handleAddPlaceClick() { //попап для добавления карточки
+  function handleAddPlaceClick() { //popup for a new place card adding
     setIsAddPlacePopupOpen(true)
   }
 
-  function handleDeletePlaceClick() { //попап для удаления карточки
+  function handleDeletePlaceClick() { //popup for a place card deleting
     setIsDeletePlacePopupOpen(true)
   }
 
-  function handleImageCard(card) { //попап для большого изображения
+  function handleImageCard(card) { //popup for a full size image by click
     setIsImageCardChoose(card)
     setIsImageCardPopupOpen(true)
   }
@@ -62,7 +62,7 @@ function App() {
       
       <Footer />
 
-      <PopupWithForm
+      <PopupWithForm                               //popup for data profile editing 
         name="popup_type_edit"
         title="Редактировать профиль"
         formButton="Сохранить"
@@ -97,7 +97,7 @@ function App() {
         </span>
       </PopupWithForm>
 
-      <PopupWithForm
+      <PopupWithForm                               //popup for a new place card adding
         name="popup_type_new-card"
         title="Новое место"
         formButton="Создать"
@@ -130,7 +130,7 @@ function App() {
         </span>
       </PopupWithForm>
 
-      <PopupWithForm
+      <PopupWithForm                               //avatar popup
         name="popup_type_new-avatar"
         title="Обновить аватар"
         formButton="Создать"
@@ -150,7 +150,7 @@ function App() {
         </span>
       </PopupWithForm>
 
-      <PopupWithForm
+      <PopupWithForm                               //popup for a place card deleting
         name="popup_type_delete"
         title="Вы уверены?"
         formButton="Да"
@@ -158,7 +158,7 @@ function App() {
         onClose = {closeAllPopups}
       />
 
-      <ImagePopup
+      <ImagePopup                                  //popup for a full size image by click
       name="popup_type_image"
       open={isImageCardPopupOpen}
       card={isImageCardChoose}
