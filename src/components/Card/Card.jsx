@@ -7,7 +7,7 @@ function Card({ card, onImageCard, onTrashButton}) {
           <button className="card__like" type="button" />
           <span className="card__number-of-likes">{card.likes.length}</span>
         </div>
-        <button className="card__trash" type="button" aria-label="Корзина" onClick={onTrashButton}/>
+        <button className="card__trash" type="button" aria-label="Корзина"    onClick={onTrashButton}/>
       </div>
   );
 }
