@@ -18,7 +18,7 @@ function Main({
     Promise.all([api.getInfo(), api.getCards()]).then(
       ([dataUser, dataCards]) => {
         setUserName(dataUser.name);
-        setUserDescription(dataUser.about); //проверить!!! about or not
+        setUserDescription(dataUser.about);
         setUserAvatar(dataUser.avatar);
         dataCards.forEach((data => data.myId = dataUser._id)); //element - cards' data - all of them have info about ID
         setUserCards(dataCards);
