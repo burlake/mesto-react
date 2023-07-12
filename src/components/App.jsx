@@ -1,8 +1,8 @@
 import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
-import PopupWithForm from "./Main/PopupWithForm/PopupWithForm.jsx";
-import ImagePopup from "./Main/ImagePopup/ImagePopup.jsx"
+import PopupWithForm from "./PopupWithForm/PopupWithForm.jsx";
+import ImagePopup from "./ImagePopup/ImagePopup.jsx"
 import { useState } from "react";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImageCardChoose, setIsImageCardChoose] = useState({});
-  const [isImageCardPopupOpen, setIsImageCardPopupOpen] = useState(false);
+  const [selectedCard , setSelectedCard] = useState(false);
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
   
   function closeAllPopups() {
@@ -19,7 +19,7 @@ function App() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsImageCardChoose(false)
-    setIsImageCardPopupOpen(false)
+    setSelectedCard({})
     setIsDeletePlacePopupOpen(false)
   }
 
@@ -41,11 +41,8 @@ function App() {
 
   function handleImageCard(card) { //popup for a full size image by click
     setIsImageCardChoose(card)
-    setIsImageCardPopupOpen(true)
+    setSelectedCard(true)
   }
-
-
-
 
   return (
     <div className="page__container">
@@ -57,10 +54,9 @@ function App() {
       onEditAvatar ={handleEditAvatarClick}
       onTrashButton = {handleDeletePlaceClick}
       onImageCard = {handleImageCard}
-
       />
       
-      <Footer />
+      <Footer/>
 
       <PopupWithForm                               //popup for data profile editing 
         name="popup_type_edit"
@@ -92,9 +88,7 @@ function App() {
           minLength={2}
           maxLength={200}
         />
-        <span id="input-occupation-error" className="error-message">
-          Вы пропустили это поле.
-        </span>
+        <span id="input-occupation-error" className="error-message">Вы пропустили это поле.</span>
       </PopupWithForm>
 
       <PopupWithForm                               //popup for a new place card adding
@@ -114,9 +108,7 @@ function App() {
           minLength={2}
           maxLength={30}
         />
-        <span id="input-title-error" className="error-message">
-          Вы пропустили это поле.
-        </span>
+        <span id="input-title-error" className="error-message">Вы пропустили это поле.</span>
         <input
           required=""
           id="input-link"
@@ -125,9 +117,7 @@ function App() {
           name="link"
           placeholder="Ссылка на картинку"
         />
-        <span id="input-link-error" className="error-message">
-          Введите адрес сайта.
-        </span>
+        <span id="input-link-error" className="error-message">Введите адрес сайта.</span>
       </PopupWithForm>
 
       <PopupWithForm                               //avatar popup
@@ -145,9 +135,7 @@ function App() {
           name="avatar"
           placeholder="Ссылка на картинку"
         />
-        <span id="input-avatar-error" className="error-message">
-          Введите адрес сайта.
-        </span>
+        <span id="input-avatar-error" className="error-message">Введите адрес сайта.</span>
       </PopupWithForm>
 
       <PopupWithForm                               //popup for a place card deleting
@@ -160,7 +148,7 @@ function App() {
 
       <ImagePopup                                  //popup for a full size image by click
       name="popup_type_image"
-      open={isImageCardPopupOpen}
+      open={selectedCard}
       card={isImageCardChoose}
       onClose = {closeAllPopups}
       />
