@@ -15,19 +15,17 @@ function Main({
   const [userCards, setUserCards] = useState([]);
 
   useEffect(() => {
-    try {
-      Promise.all([api.getInfo(), api.getCards()]).then(
-        ([dataUser, dataCards]) => {
-          setUserName(dataUser.name);
-          setUserDescription(dataUser.about);
-          setUserAvatar(dataUser.avatar);
-          dataCards.forEach((data) => (data.myId = dataUser._id)); //element - cards' data
-          setUserCards(dataCards);
-        }
-      );
-    } catch (error) {
-      console.log(`Ошибка: ${error}`);
-    }
+    Promise.all([api.getInfo(), api.getCards()])
+      .then(([dataUser, dataCards]) => {
+        setUserName(dataUser.name);
+        setUserDescription(dataUser.about);
+        setUserAvatar(dataUser.avatar);
+        dataCards.forEach((data) => (data.myId = dataUser._id)); //element - cards' data
+        setUserCards(dataCards);
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
   }, []);
 
   return (
