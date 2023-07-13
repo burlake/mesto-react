@@ -10,8 +10,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isImageCardChoose, setIsImageCardChoose] = useState({});
-  const [selectedCard , setSelectedCard] = useState(false);
+  const [isImageCardChoose, setIsImageCardChoose] = useState(false);
+  const [selectedCard , setSelectedCard] = useState(null);
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
   
   function closeAllPopups() {
@@ -19,7 +19,7 @@ function App() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsImageCardChoose(false)
-    setSelectedCard({})
+    setSelectedCard(null)
     setIsDeletePlacePopupOpen(false)
   }
 
@@ -41,7 +41,7 @@ function App() {
 
   function handleImageCard(card) { //popup for a full size image by click
     setIsImageCardChoose(card)
-    setSelectedCard(true)
+    setSelectedCard(card)
   }
 
   return (
