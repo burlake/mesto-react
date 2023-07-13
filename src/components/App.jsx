@@ -120,7 +120,7 @@ function App() {
         <span id="input-link-error" className="error-message">Введите адрес сайта.</span>
       </PopupWithForm>
 
-      <PopupWithForm                               //avatar popup
+      <PopupWithForm                               //avatar
         name="popup_type_new-avatar"
         title="Обновить аватар"
         formButton="Создать"
