@@ -3,7 +3,7 @@ import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.jsx";
 import ImagePopup from "./ImagePopup/ImagePopup.jsx"
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 function App() {
 
@@ -14,35 +14,64 @@ function App() {
   const [selectedCard , setSelectedCard] = useState(null);
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
   
-  function closeAllPopups() {
+  const setCloseAllPopups = useCallback (() => {
     setIsEditAvatarPopupOpen(false)
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsImageCardChoose(false)
     setSelectedCard(null)
     setIsDeletePlacePopupOpen(false)
+  },[])
+
+  function setEventListenerForEsc () {
+    document.addEventListener('keydown', closePopupByEsc)
   }
 
-  function handleEditAvatarClick() { //avatar popup
+  const closePopupByEsc = useCallback ((event) => { // для закрытия по Esc
+      if (event.key === "Escape"){
+        setCloseAllPopups()
+      }
+    }, [setCloseAllPopups])
+
+  const closePopupByOverlay = useCallback ((event) => { // для закрытия по Overlay
+    if (event.target === event.currentTarget) {
+      setCloseAllPopups()
+    }
+  }, [setCloseAllPopups])
+
+  const closeAllPopups = useCallback (() => {   // для закрытия по Esc, Overlay и крестику
+    setCloseAllPopups()
+    document.removeEventListener('keydown', closePopupByEsc)
+  },[setCloseAllPopups, closePopupByOverlay, closePopupByEsc])
+
+  function handleEditAvatarClick() { //для попапа аватара
     setIsEditAvatarPopupOpen(true)
+    setEventListenerForEsc()
   }
 
-  function handleEditProfileClick() { //popup for data profile editing 
+  function handleEditProfileClick() { //для попапа с редактированием профиля
     setIsEditProfilePopupOpen(true)
+    setEventListenerForEsc()
   }
 
-  function handleAddPlaceClick() { //popup for a new place card adding
+  function handleAddPlaceClick() { // для попапа с добавлением новой карточки
     setIsAddPlacePopupOpen(true)
+    setEventListenerForEsc()
   }
 
-  function handleDeletePlaceClick() { //popup for a place card deleting
+  function handleDeletePlaceClick() { //для попапа с удалением карточки
     setIsDeletePlacePopupOpen(true)
+    setEventListenerForEsc()
   }
 
-  function handleImageCard(card) { //popup for a full size image by click
+  function handleImageCard(card) { //для попапа с картинкой карточки
     setIsImageCardChoose(card)
     setSelectedCard(card)
+    setEventListenerForEsc()
   }
+
+
+
 
   return (
     <div className="page__container">
