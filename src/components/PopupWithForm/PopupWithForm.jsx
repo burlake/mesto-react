@@ -1,7 +1,7 @@
 function PopupWithForm({ name, title, formButton, children, open, onClose }) {
   return (
-    <div className={`popup popup_type_${name} popup-about ${open && "popup_opened"}`} >
-      <div className="popup__content">
+    <div className={`popup popup_type_${name} popup-about ${open && "popup_opened"}`} onClick={onClose} >
+      <div className="popup__content" onClick={(event => event.stopPropagation())}>
         <button
           className="popup__close-button popup__close-button_type_edit"
           id="close-button"
