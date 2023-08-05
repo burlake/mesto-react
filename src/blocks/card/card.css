@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  min-height: 361px;
+  height: 361px;
   max-width: 282px;
   object-fit: contain;
   box-sizing: border-box;
