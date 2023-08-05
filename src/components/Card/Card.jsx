@@ -12,15 +12,13 @@ function Card({ card, onCardLike, onImageCard, onTrashButton}) {
 
   return (
     <div className="card">
-      <div className="gallery_template">
-        <img className="card__img" src={card.link} alt={`${card.name}. Иллюстрация.`} onClick={() => onImageCard({ name: card.name, link: card.link })}/>
-        <div className="card__container">
-          <h2 className="card__place">{card.name}</h2>
-          <button className={cardLikeButtonClassName} type="button" onClick={() => onCardLike(card)}/>
-          <span className="card__number-of-likes">{card.likes.length}</span>
-        </div>
-        {isOwn && <button className="card__trash" type="button" aria-label="Корзина" onClick={() => onTrashButton(card._id)}/>}
+      <img className="card__img" src={card.link} alt={`${card.name}. Иллюстрация.`} onClick={() => onImageCard({ name: card.name, link: card.link })}/>
+      <div className="card__container">
+        <h2 className="card__place">{card.name}</h2>
+        <button className={cardLikeButtonClassName} type="button" onClick={() => onCardLike(card)}/>
+        <span className="card__number-of-likes">{card.likes.length}</span>
       </div>
+      {isOwn && <button className="card__trash" type="button" aria-label="Корзина" onClick={() => onTrashButton(card._id)}/>}
     </div>
   );
 }
