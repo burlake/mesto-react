@@ -6,6 +6,9 @@ import ImagePopup from "./ImagePopup/ImagePopup.jsx"
 import { useCallback, useEffect, useState } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import api from "../utils/api.js";
+import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.jsx";
+import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.jsx";
+import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.jsx";
 
 function App() {
   // стейты попапов
@@ -21,6 +24,7 @@ function App() {
 
   // стейты карточки
   const [userCards, setUserCards] = useState([]);
+  const [deleteCardId, setDeleteCardId] = useState ('')
 
   const setCloseAllPopups = useCallback(() => {
     setIsEditAvatarPopupOpen(false)
@@ -39,8 +43,8 @@ function App() {
         setUserCards((state) => state.map((c) =>
           c._id === card._id ? newCard : c))
       },
-        (err) => {
-          console.log(err);
+        (error) => {
+          console.log(`Ошибка: ${error}`);
         })
   };
 
@@ -80,9 +84,10 @@ function App() {
     setEventListenerForEsc()
   }
 
-  function handleDeletePlaceClick() { //для попапа с удалением карточки
+  function handleDeletePlaceClick(cardId) { //для попапа с удалением карточки
     setIsDeletePlacePopupOpen(true)
     setEventListenerForEsc()
+    setDeleteCardId(cardId)
   }
 
   function handleImageCard(card) { //для попапа с картинкой карточки
@@ -103,6 +108,47 @@ function App() {
       });
   }, []);
 
+  function handleDeletePlaceSubmit(event) { //onSubmit
+    event.preventDefault()
+    api.deleteCard(deleteCardId)
+    .then (() => {
+      setUserCards (userCards.filter (userCards => {
+        return userCards._id !== deleteCardId //карточку оставляем если не равны
+      }))
+      closeAllPopups()
+    })
+    .catch((error) => {console.log(`Ошибка: ${error}`)})
+  }
+
+  function handleUpdateUser (dataUser, reset) {
+    api.setUserInfo(dataUser)
+      .then(res => {
+        setCurrentUser(res)
+        closeAllPopups()
+        reset()
+      })
+      .catch((error) => {console.log(`Ошибка: ${error}`)})
+  }
+
+  function handleUpdateAvatar(dataUser, reset) {
+    api.setUserAvatar(dataUser)
+      .then (res => {
+        setCurrentUser(res)
+        closeAllPopups()
+        reset()
+      })
+      .catch((error) => {console.log(`Ошибка: ${error}`)})
+  }
+
+  function handleAddPlaceSubmit(dataCards, reset) {
+    api.addCard(dataCards)
+      .then ((res) => {
+        setUserCards([res, ...userCards])
+        closeAllPopups()
+        reset()
+      })
+      .catch((error) => {console.log(`Ошибка: ${error}`)})
+  }
 
   return (
 
@@ -123,85 +169,23 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm                               //popup for data profile editing 
-          name="popup_type_edit"
-          title="Редактировать профиль"
-          formButton="Сохранить"
+        <EditProfilePopup                            //popup for data profile editing
           open={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            required=""
-            id="input-name"
-            className="form__subtitle form__subtitle_text_name"
-            type="text"
-            name="name"
-            placeholder="Имя"
-            minLength={2}
-            maxLength={40}
-          />
-          <span id="input-name-error" className="error-message">
-            Вы пропустили это поле.
-          </span>
-          <input
-            required=""
-            id="input-occupation"
-            className="form__subtitle form__subtitle_text_job"
-            type="text"
-            name="about"
-            placeholder="Занятие"
-            minLength={2}
-            maxLength={200}
-          />
-          <span id="input-occupation-error" className="error-message">Вы пропустили это поле.</span>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        />
 
-        <PopupWithForm                               //popup for a new place card adding
-          name="popup_type_new-card"
-          title="Новое место"
-          formButton="Создать"
-          open={isAddPlacePopupOpen}
+        <AddPlacePopup
+          open={isAddPlacePopupOpen }
           onClose={closeAllPopups}
-        >
-          <input
-            required=""
-            id="input-title"
-            className="form__subtitle form__subtitle_card_title"
-            type="text"
-            name="name"
-            placeholder="Название"
-            minLength={2}
-            maxLength={30}
-          />
-          <span id="input-title-error" className="error-message">Вы пропустили это поле.</span>
-          <input
-            required=""
-            id="input-link"
-            className="form__subtitle form__subtitle_card_image"
-            type="url"
-            name="link"
-            placeholder="Ссылка на картинку"
-          />
-          <span id="input-link-error" className="error-message">Введите адрес сайта.</span>
-        </PopupWithForm>
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
-        <PopupWithForm                               //avatar
-          name="popup_type_new-avatar"
-          title="Обновить аватар"
-          formButton="Создать"
+        <EditAvatarPopup
           open={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            required=""
-            id="input-avatar"
-            className="form__subtitle"
-            type="url"
-            name="avatar"
-            placeholder="Ссылка на картинку"
-          />
-          <span id="input-avatar-error" className="error-message">Введите адрес сайта.</span>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
 
         <PopupWithForm                               //popup for a place card deleting
           name="popup_type_delete"
@@ -209,6 +193,7 @@ function App() {
           formButton="Да"
           open={isDeletePlacePopupOpen}
           onClose={closeAllPopups}
+          onSubmit={handleDeletePlaceSubmit}
         />
 
         <ImagePopup                                  //popup for a full size image by click
