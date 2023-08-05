@@ -48,16 +48,26 @@ function App() {
         })
   };
 
-  function setEventListenerForEsc() {
-    document.addEventListener('keydown', closePopupByEsc)
-  }
+  // function setEventListenerForEsc() {
+  //   document.addEventListener('keydown', closePopupByEsc)
+  // }
 
-  const closePopupByEsc = useCallback((event) => { // для закрытия по Esc
-    if (event.key === "Escape") {
-      setCloseAllPopups()
-      document.removeEventListener('keydown', closePopupByEsc)
-    }
-  }, [setCloseAllPopups])
+  // const closePopupByEsc = useCallback((event) => { // для закрытия по Esc
+  //   if (event.key === "Escape") {
+  //     setCloseAllPopups()
+  //     document.removeEventListener('keydown', closePopupByEsc)
+  //   }
+  // }, [setCloseAllPopups])
+
+  useEffect(() => {
+    const closePopupByEsc = (event) => {
+        if (event.key === "Escape") {
+            closeAllPopups();
+        }
+    };
+    document.addEventListener("keydown", closePopupByEsc);
+    return () => document.removeEventListener("keydown", closePopupByEsc);
+  }, []);
 
   const closePopupByOverlay = useCallback((event) => { // для закрытия по Overlay
     if (event.target === event.currentTarget) {
@@ -67,33 +77,33 @@ function App() {
 
   const closeAllPopups = useCallback(() => {   // для закрытия по Esc, Overlay и крестику
     setCloseAllPopups()
-  }, [setCloseAllPopups, closePopupByOverlay, closePopupByEsc])
+  }, [setCloseAllPopups, closePopupByOverlay]) //, closePopupByEsc
 
   function handleEditAvatarClick() { //для попапа аватара
     setIsEditAvatarPopupOpen(true)
-    setEventListenerForEsc()
+    //setEventListenerForEsc()
   }
 
   function handleEditProfileClick() { //для попапа с редактированием профиля
     setIsEditProfilePopupOpen(true)
-    setEventListenerForEsc()
+    //setEventListenerForEsc()
   }
 
   function handleAddPlaceClick() { // для попапа с добавлением новой карточки
     setIsAddPlacePopupOpen(true)
-    setEventListenerForEsc()
+    //setEventListenerForEsc()
   }
 
   function handleDeletePlaceClick(cardId) { //для попапа с удалением карточки
     setIsDeletePlacePopupOpen(true)
-    setEventListenerForEsc()
+    //setEventListenerForEsc()
     setDeleteCardId(cardId)
   }
 
   function handleImageCard(card) { //для попапа с картинкой карточки
     setIsImageCardChoose(card)
     setSelectedCard(card)
-    setEventListenerForEsc()
+    //setEventListenerForEsc()
   }
 
   //запросы на сервер
