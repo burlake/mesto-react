@@ -19,7 +19,7 @@ function Card({ card, onCardLike, onImageCard, onTrashButton}) {
           <button className={cardLikeButtonClassName} type="button" onClick={() => onCardLike(card)}/>
           <span className="card__number-of-likes">{card.likes.length}</span>
         </div>
-        {isOwn && <button className="card__trash" type="button" aria-label="Корзина" onClick={onTrashButton}/>}
+        {isOwn && <button className="card__trash" type="button" aria-label="Корзина" onClick={() => onTrashButton(card._id)}/>}
       </div>
     </div>
   );

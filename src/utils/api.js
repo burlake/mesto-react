@@ -93,7 +93,6 @@ class Api {
 
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
-            //альтернатива`-  ссылка
             method: "DELETE",
             headers: {
                 authorization: this._authorization,
