@@ -67,7 +67,7 @@ function App() {
     };
     document.addEventListener("keydown", closePopupByEsc);
     return () => document.removeEventListener("keydown", closePopupByEsc);
-  }, []);
+  }, [setCloseAllPopups]);
 
   const closePopupByOverlay = useCallback((event) => { // для закрытия по Overlay
     if (event.target === event.currentTarget) {
@@ -101,8 +101,8 @@ function App() {
   }
 
   function handleImageCard(card) { //для попапа с картинкой карточки
-    setIsImageCardChoose(card)
     setSelectedCard(card)
+    setIsImageCardChoose(card) 
     //setEventListenerForEsc()
   }
 

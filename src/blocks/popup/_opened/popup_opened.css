@@ -3,7 +3,7 @@
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.5);
   transition-delay: 0s, 0s;
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
 
 .popup_opened:last-child {
