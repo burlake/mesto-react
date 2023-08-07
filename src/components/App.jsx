@@ -67,7 +67,14 @@ function App() {
     };
     document.addEventListener("keydown", closePopupByEsc);
     return () => document.removeEventListener("keydown", closePopupByEsc);
-  }, [setCloseAllPopups]);
+  }, [
+    isEditProfilePopupOpen, 
+    isEditAvatarPopupOpen, 
+    isAddPlacePopupOpen, 
+    isImageCardChoose, 
+    selectedCard, 
+    isDeletePlacePopupOpen,
+    isDeletePlacePopupOpen]);
 
   const closePopupByOverlay = useCallback((event) => { // для закрытия по Overlay
     if (event.target === event.currentTarget) {
