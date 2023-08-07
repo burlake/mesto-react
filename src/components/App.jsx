@@ -73,7 +73,15 @@ function App() {
     if (event.target === event.currentTarget) {
       setCloseAllPopups()
     }
-  }, [setCloseAllPopups])
+  }, [
+    isEditProfilePopupOpen, 
+    isEditAvatarPopupOpen, 
+    isAddPlacePopupOpen, 
+    isImageCardChoose, 
+    selectedCard, 
+    isDeletePlacePopupOpen,
+    isDeletePlacePopupOpen
+  ])
 
   const closeAllPopups = useCallback(() => {   // для закрытия по Esc, Overlay и крестику
     setCloseAllPopups()
