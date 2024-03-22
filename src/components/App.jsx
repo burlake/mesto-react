@@ -10,10 +10,11 @@ import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.jsx";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.jsx";
 import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.jsx";
 
+
 function App() {
   // стейты попапов
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false); 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImageCardChoose, setIsImageCardChoose] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);

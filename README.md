@@ -1,12 +1,25 @@
-# Проект: <a href="https://burlake.github.io/mesto-react/" target="_blank">Место</a>🌍<h1>
-## Проектная работа для курса "Яндекс Практикум".</h2>
+## Место <h2>
+
+Проект представляет собой одностраничное веб-приложение с адаптивной версткой под телефон, планшет и ПК по шаблону из Figma, с учетом Pixel Perfect. На сайте можно: 
+- [x] добавить и удалить карточку;
+- [x] поставить и удалить like;
+- [x] удалить только свою карточку нажав на корзину;
+- [x] обновить данные профиля;
+- [x] нажав на карточку увидеть полноэкранный попап с картинкой.
+
+
+ Благодаря этому сайту Вы можете поиграть с профилем по типу "Инстаграм". 
+
+Проект создан как результат обучения верстке в рамках нескольких проектнох работ на курсе «Веб-разработчик» от сервиса Яндекс.Практикум. 
+
+Посмотреть можно по <a href="https://burlake.github.io/mesto-react/" target="_blank">ссылке</a>.
+
+ <img src="/src/images/Screenshot 2024-03-22 at 21.08.44.png" alt="пример оформления сайта" href="https://burlake.github.io/mesto-react/">
+
 ### Используемые технологии:<h3>
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> </p>
-<p align="left"> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> 
-<a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a>
+
+<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> <a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a>
 </p>
-
-
 
 Что можно увидеть на сайте: 
 - [x] классы по БЭМ
@@ -29,8 +42,7 @@
 - [X] код переработан в соответствии с ООП и созданы классы Card, FormValidator, UserInfo.js , Section.js , Popup.js , PopupWithForm.js , PicturePopup.js в директории components
 - [X] работа с Webpack
 
-### РАБОТА ПЕРЕПИСЫВАЕТСЯ НА React
-Пока переписала следуюшее части:
+Переписала следующие поменты на React:
 - [X] создала новый репозиторий mesto-react
 - [м] открыла его с помощью react через терминал
 - [X] конвертировала HTML размету в JSX что было интересно и не очень сложно
@@ -42,4 +54,9 @@
 - [X] добавила возможность изменеия данных пользователя, а именно данные профайла с именем и профессией, аватара и загрузку карточек с названием
 - [X] дополнительно предприняла попытку сделала валидацию форм, но с косяком конечно получилось (теоретически ошибку нашла, но практически не исправила:))
 - [X] на будущее можно добавить красивый значек загрузки данных
-На проект ушло много времени, особенно JS 🙈.
+
+> Проект был интересный, однако к концу учебы переписывание очередной части кода этого проекта или добавление новой фичи вызывало раздражение от усталости 🫠 и углубляло понимание конкретно этого проектау🤓. В итоге на проект ушло много времени, особенно JS впечатлил 🙈, хотя и React с которым я работала даже понравился🙃.
+
+> Update: Был добавлен функционал по регистации и авторизации пользователей, но здесь этого нет 😅.
+
+</p>
